@@ -1,0 +1,3 @@
+# hello docker
+
+FROM whatever
