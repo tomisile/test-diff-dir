@@ -14,7 +14,7 @@ def increase_score():
     # Initialize an empty dictionary to store the data
     data_dict = {}
 
-    with open('students_results.csv', newline='') as csvfile:
+    with open('students_results.csv', newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
 
         # Skip the header row
