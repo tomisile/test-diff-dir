@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Landing Page</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            background-color: #fff;
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: orange;
+        }
+
+        nav button {
+            background: orange;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        nav button:hover {
+            background: #e68a00;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo img {
+            border-radius: 50%;
+            max-width: 50px;
+            height: auto;
+        }
+
+
+        #hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/HK_Shatin_Yu_Chui_Shopping_Centre_Chinese_restaurant_interior_visitors_Sept-2012.JPG/640px-HK_Shatin_Yu_Chui_Shopping_Centre_Chinese_restaurant_interior_visitors_Sept-2012.JPG') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+            backdrop-filter: blur(1px);    /* Blurred effect */
+            padding: 10rem;
+            border-radius: 10px;
+            max-width:100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-overlay h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-overlay p {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            background: orange;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: darkorange;
+        }
+
+        /* Hero Section */
+        /* .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/HK_Shatin_Yu_Chui_Shopping_Centre_Chinese_restaurant_interior_visitors_Sept-2012.JPG/640px-HK_Shatin_Yu_Chui_Shopping_Centre_Chinese_restaurant_interior_visitors_Sept-2012.JPG') center/cover no-repeat;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        } */
+
+        /* Section Styling */
+        section {
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: orange;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-item h3 {
+            text-align: center;
+            margin: 1rem 0;
+            color: orange;
+        }
+
+        .menu-item p {
+            padding: 0 1rem 1rem;
+            text-align: center;
+            color: #666;
+        }
+
+        .deals-grid {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .deal-item {
+            text-align: center;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .deal-item img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 1rem;
+        }
+
+        .deal-item h3 {
+            color: orange;
+            margin-bottom: 0.5rem;
+        }
+
+        .deal-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: orange;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Radical213%E9%BE%9C.gif/640px-Radical213%E9%BE%9C.gif" alt="Website Icon" style="vertical-align: middle; margin-right: 10px;">
+          Shanghai Kitchen
+        </div>
+    
+        <ul>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#deals">Deals</a></li>
+            <li><a href="#locations">Locations</a></li>
+        </ul>
+        <div>
+            <button>Make a Reservation</button>
+            <button>Sign Up</button>
+        </div>
+    </nav>
+
+    <!-- <header class="hero">
+        <div>
+            <h1>Welcome to Shanghai Kitchen</h1>
+            <p>Come and Experience Authentic Chinese Cuisine.</p>
+        </div>
+    </header> -->
+
+    <section id="hero">
+      <div class="hero-overlay">
+          <h1>Welcome to Shanghai Kitchen</h1>
+          <p>Come and Experience Authentic Chinese Cuisine.</p>
+          <a href="#reservation" class="cta-button">Make a Reservation</a>
+      </div>
+    </section>
+  
+
+    <section id="menu">
+        <h2 class="section-title">Our Menu</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Dumpling.jpeg/640px-Dumpling.jpeg" alt="Dumplings">
+                <h3>Steamed Dumplings</h3>
+                <p>Perfectly steamed dumplings filled with pork and vegetables.</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Rice_noodles_soup_in_yu_kee.jpg/640px-Rice_noodles_soup_in_yu_kee.jpg" alt="Noodles">
+                <h3>Chow Mein</h3>
+                <p>Classic stir-fried noodles with vegetables and your choice of protein.</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Hokkien_fried_rice_in_hk.jpg/640px-Hokkien_fried_rice_in_hk.jpg" alt="Fried Rice">
+                <h3>Fried Rice</h3>
+                <p>Golden fried rice with vegetables, eggs, and soy sauce.</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Beijing_Garden_-_Soup_%285276026554%29.jpg/640px-Beijing_Garden_-_Soup_%285276026554%29.jpg" alt="Hot and Sour Soup">
+                <h3>Hot and Sour Soup</h3>
+                <p>A hearty soup with tofu, mushrooms, and a spicy tangy flavor.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="deals">
+      <h2 class="section-title">Special Deals</h2>
+      <div class="deals-grid">
+          <div class="deal-item">
+              <img src="https://www.svgrepo.com/show/522519/discount.svg" alt="50% Discount Icon">
+              <h3>50% Off</h3>
+              <p>Enjoy 50% off on all main courses every Friday evening!</p>
+          </div>
+          <div class="deal-item">
+              <img src="https://www.svgrepo.com/show/504360/free.svg" alt="Free Dessert Icon">
+              <h3>Free Dessert</h3>
+              <p>Get a free dessert with every combo meal purchased!</p>
+          </div>
+          <div class="deal-item">
+              <img src="https://www.svgrepo.com/show/528832/add-circle.svg" alt="BOGO Icon">
+              <h3>Buy One, Get One</h3>
+              <p>Order any appetizer and get another one absolutely free!</p>
+          </div>
+      </div>
+    </section>
+  
+
+    <section id="locations">
+      <h2 class="section-title">Our Location</h2>
+      <p>Visit us at our main branch in Ikeja, Lagos, Nigeria.</p>
+      <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962642.4415851946!2d3.345116213389206!3d6.601838325881065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b92db44ba3677%3A0xf8d21230f8c58b67!2sIkeja%2C%20Lagos%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1683755879274!5m2!1sen!2sng"
+          width="100%"
+          height="400"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </section>
+  
+    <section id="reservation">
+        <h2 class="section-title">Make a Reservation</h2>
+        <form id="reservationForm">
+            <input type="text" placeholder="Name" required>
+            <input type="number" placeholder="Number of Guests" required>
+            <input type="text" placeholder="Mobile Number" required>
+            <!-- <input type="datetime-local" required> -->
+            <button type="submit">Submit</button>
+        </form>
+
+      <div id="toast" style="display: none; position: fixed; bottom: 20px; right: 20px; background: orange; color: white; padding: 1rem; border-radius: 5px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);">
+      </div>
+        
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Shanghai Kitchen. All rights reserved.</p>
+        <p>
+            <a href="#careers">Careers</a> | <a href="#terms">Terms & Conditions</a> |
+            <a href="#giftcards">Gift Cards</a> | <a href="#faqs">FAQs</a>
+        </p>
+        <p>
+            <a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a>
+        </p>
+    </footer>
+    <script>
+      const reservationForm = document.getElementById('reservationForm');
+      const toast = document.getElementById('toast');
+  
+      reservationForm.addEventListener('submit', (event) => {
+          event.preventDefault(); // Prevent page reload
+  
+          const formData = new FormData(reservationForm);
+          const name = formData.get('name');
+          const guests = formData.get('guests');
+          const mobile = formData.get('mobile');
+          const time = formData.get('time');
+  
+          // Show toast with reservation details
+          toast.innerHTML = `Reservation successful! <br> Name: ${name}, Guests: ${guests}, Mobile: ${mobile}, Time: ${time}`;
+          toast.style.display = 'block';
+  
+          // Hide the toast after 5 seconds
+          setTimeout(() => {
+              toast.style.display = 'none';
+          }, 10000);
+  
+          // Reset the form
+          reservationForm.reset();
+      });
+    </script>
+  
+</body>
+</html>
