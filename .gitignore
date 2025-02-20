@@ -1,2 +1,5 @@
 # Do not track csv files 
 *.csv
+
+# Node JS
+node_modules/
