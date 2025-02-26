@@ -3,3 +3,6 @@
 
 # Node JS
 node_modules/
+
+# Text file used for exporting commit differences (git diff --file)
+diff.txt
