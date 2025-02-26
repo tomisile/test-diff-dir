@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  app:
+    image: static-deploy:23-alpine
+    # build:
+    #   context: .
+    container_name: static-from-compose
+
+    ports:
+      - 3001:3000

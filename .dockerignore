@@ -1,0 +1,16 @@
+# Git
+.git 
+.github/
+.gitignore
+README.md
+
+# Node
+node_modules/
+
+# Test artifacts
+customer-data.csv
+
+# Docker
+Dockerfile
+docker-compose.y*ml 
+*compose.y*ml 

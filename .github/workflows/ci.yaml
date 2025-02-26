@@ -1,24 +1,54 @@
-# Workflow name
-name: Build from tarball
+name: CI pipeline
 
-# Triggers
 on:
-  # pull_request:
-  #   branches: [ "main" ]
-  # push:
-  #   branches:
-  #     - "main"
-  #     - "dev"
-  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
 
-# Jobs
+permissions:
+  contents: read
+
 jobs:
-  build-tarball: # First job
+  build:
+    name: Pylint
     runs-on: ubuntu-latest
-
-    # Steps
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pylint
+      - name: Analysing the code with pylint
+        run: |
+          pylint $(git ls-files '*.py')
 
-      - name: Set up Python 3.12 # Second step
-        run: 
+  hadolint:
+    name: Run hadolint scanning for Dockerfiles
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run hadolint
+        uses: hadolint/hadolint-action@54c9adbab1582c2ef04b2016b760714a4bfde3cf # 3.1.0
+        with:
+          dockerfile: ./Dockerfile
+          format: sarif
+          output-file: hadolint-results.sarif
+          no-fail: true
+
+      - name: Upload analysis results to GitHub
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: hadolint-results.sarif
+          wait-for-processing: true

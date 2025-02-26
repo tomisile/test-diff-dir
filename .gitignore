@@ -1,2 +1,8 @@
 # Do not track csv files 
 *.csv
+
+# Node JS
+node_modules/
+
+# Text file used for exporting commit differences (git diff --file)
+diff.txt

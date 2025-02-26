@@ -1,0 +1,22 @@
+{
+  "name": "test-dir",
+  "version": "0.1.0",
+  "description": "Insert description here",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomisile/test-diff-dir.git"
+  },
+  "author": "nupatdevops",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomisile/test-diff-dir/issues"
+  },
+  "homepage": "https://github.com/tomisile/test-diff-dir#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
